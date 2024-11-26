@@ -791,15 +791,23 @@ body {
   cursor: pointer;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .members_Slider {
-    grid-auto-columns: calc((100% / 2) - 30px);
+    grid-auto-columns: calc((100% / 2) - 20px);
+  }
+
+  #cards_wrapper {
+    width: 90%;
   }
 }
 
 @media (max-width: 600px) {
   .members_Slider {
     grid-auto-columns: calc(100%);
+  }
+
+  #cards_wrapper {
+    width: 70%;
   }
 }
 
@@ -1102,25 +1110,25 @@ body {
   border-top-left-radius: 20px;
 }
 
-#nav_btns {
+#nav_bars {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 70px;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .member_btn {
   font-family: "Zain", serif;
   font-weight: 700;
   font-style: normal;
-  font-size: 25px;
+  font-size: 20px;
   border: none;
   background-color: rgb(10, 132, 181);
   color: white;
   box-shadow: 0 0 15px rgb(0, 183, 255);
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   border-radius: 5px;
   display: flex;
   justify-content: center;
