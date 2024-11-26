@@ -13,6 +13,14 @@ const hamburgerPath =
     "M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z";
 const closePath =
     "m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z";
+const mem_1 = document.getElementById("member1");
+const mem_2 = document.getElementById("member2");
+const mem_3 = document.getElementById("member3");
+const mem_4 = document.getElementById("member4");
+const mem_5 = document.getElementById("member5");
+const mem_6 = document.getElementById("member6");
+const mem_7 = document.getElementById("member7");
+const mem_8 = document.getElementById("member8");
 
 ham_icon.addEventListener("click", () => {
     isOpen = !isOpen;
@@ -79,7 +87,7 @@ window.onload = function () {
             loadingScreen.style.display = "none";
             document.body.style.overflow = "auto";
         }, 500);
-    }, 1000);
+    }, 5000);
 };
 
 let isDragging = false,
@@ -136,3 +144,35 @@ cards_wrapper.addEventListener("mouseleave", autoScroll);
 NextMember.addEventListener("click", moveToNextCard);
 PrevMember.addEventListener("click", moveToPrevCard);
 document.addEventListener("mouseup", dragStop);
+
+mem_1.onclick = function () {
+    window.alert("ايه يا حبيب اخوك عاوز ايه");
+};
+
+mem_2.onclick = function () {
+    window.alert("عاوز ايه يعم انت متروح تذاكر الكترونكس امشي");
+};
+
+mem_3.onclick = function () {
+    window.alert("انا مش عاوز خيلة");
+};
+
+mem_4.onclick = function () {
+    window.alert("يعم امشي بقا هو مفيش الا انا ");
+};
+
+mem_5.onclick = function () {
+    window.alert("متضغطش عليا يا صاحبي انا كدا كدا مضغوط اصلا");
+};
+
+mem_6.onclick = function () {
+    window.alert(" انا عارفك وهجيبك يلي ضغطت عليا");
+};
+
+mem_7.onclick = function () {
+    window.alert("طول مانت ماشي ورايا مش هتفلح");
+};
+
+mem_8.onclick = function () {
+    window.alert("اوعي تقفل الصفحة ولو قفلتها فاعلم ان الشيطان قد منعك");
+};
