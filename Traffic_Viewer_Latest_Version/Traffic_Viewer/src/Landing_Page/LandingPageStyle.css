@@ -12,6 +12,11 @@ html {
 body {
     position: relative;
     overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .loading_screen {
@@ -147,7 +152,16 @@ body {
     width: 200px;
     height: 200px;
     margin-top: 8px;
-    cursor: pointer;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .header {
@@ -380,12 +394,7 @@ body {
 #home .title_image img {
     width: 800px;
     height: 600px;
-    margin-top: 80px;
-    border-radius: 15px;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -ms-border-radius: 15px;
-    -o-border-radius: 15px;
+    margin-top: 50px;
 }
 
 #home .title h1 {
@@ -888,9 +897,10 @@ body {
 .members_Slider .member8 p {
     font-size: 15px;
     position: absolute;
-    top: 200px;
-    padding-left: 5px;
-    padding-right: 5px;
+    top: 220px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-weight: 500;
 }
 
 .members_Slider .member1 button,
