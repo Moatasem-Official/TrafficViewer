@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Rating System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .rating-form {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .ratings-list {
+            margin-top: 20px;
+        }
+        .rating-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <h1>Traffic Rating System</h1>
+    
+    <div class="rating-form">
+        <h2>Submit Rating</h2>
+        <form id="ratingForm">
+            <div>
+                <label for="rating">Rating (1-5):</label>
+                <input type="number" id="rating" min="1" max="5" required>
+            </div>
+            <div>
+                <label for="comment">Comment:</label>
+                <textarea id="comment"></textarea>
+            </div>
+            <button type="submit">Submit Rating</button>
+        </form>
+    </div>
+
+    <div class="ratings-list">
+        <h2>Recent Ratings</h2>
+        <div id="ratingsList"></div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+
+        // Submit rating
+        document.getElementById('ratingForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const value = parseInt(document.getElementById('rating').value);
+            const comment = document.getElementById('comment').value;
+
+            try {
+                const response = await fetch(`${API_URL}/ratings`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ value, comment }),
+                });
+
+                if (response.ok) {
+                    alert('Rating submitted successfully!');
+                    document.getElementById('ratingForm').reset();
+                    loadRatings();
+                } else {
+                    alert('Error submitting rating');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error submitting rating');
+            }
+        });
+
+        // Load ratings
+        async function loadRatings() {
+            try {
+                const response = await fetch(`${API_URL}/ratings`);
+                const ratings = await response.json();
+                
+                const ratingsListElement = document.getElementById('ratingsList');
+                ratingsListElement.innerHTML = ratings.map(rating => `
+                    <div class="rating-item">
+                        <strong>Rating: ${rating.value}/5</strong>
+                        <p>${rating.comment || 'No comment'}</p>
+                        <small>${new Date(rating.timestamp).toLocaleString()}</small>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        // Load ratings on page load
+        loadRatings();
+    </script>
+</body>
+</html>
