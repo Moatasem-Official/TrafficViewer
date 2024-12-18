@@ -271,20 +271,5 @@ window.onload = function () {
     }, 500);
   }, 5000);
 
-  // Load remembered user data
-  if (localStorage.getItem("remembered") === "true") {
-    const userType = localStorage.getItem("userType");
-    const username = localStorage.getItem("username");
-
-    if (userType && username) {
-      dropDown.value = userType;
-      if (userType === "normal") {
-        normalUserName.value = username;
-      } else {
-        adminUserName.value = username;
-      }
-      checkUserType();
-      document.getElementById("remember").checked = true;
-    }
-  }
+  loadUserData();
 };
