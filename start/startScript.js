@@ -209,6 +209,8 @@ form.onsubmit = (e) => {
           const basePath = window.location.pathname.includes("/TrafficViewer")
             ? "/TrafficViewer"
             : "";
+          loadingScreen.style.display = "none";
+          document.body.style.overflow = "auto";
           window.location.href = `${basePath}/Choose_Real_OR_Sim/chooseDesign.html`;
         }, 500);
       }, 3000);
@@ -237,6 +239,8 @@ form.onsubmit = (e) => {
             const basePath = window.location.pathname.includes("/TrafficViewer")
               ? "/TrafficViewer"
               : "";
+            loadingScreen.style.display = "none";
+            document.body.style.overflow = "auto";
             window.location.href = `${basePath}/Choose_Real_OR_Sim/chooseDesign.html`;
           }, 500);
         }, 3000);
@@ -261,6 +265,13 @@ form.onsubmit = (e) => {
 // Skip loading screen on back navigation
 window.onload = function () {
   const loadingScreen = document.getElementById("loading");
+
+  // Skip loading screen if navigating back using browser back button
+  if (performance.getEntriesByType("navigation")[0].type === "back_forward") {
+    loadingScreen.style.display = "none";
+    document.body.style.overflow = "auto";
+    return;
+  }
 
   setTimeout(() => {
     loadingScreen.style.opacity = "0";
