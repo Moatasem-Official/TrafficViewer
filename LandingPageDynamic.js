@@ -81,21 +81,14 @@ upIcon.onclick = function () {
 
 window.onload = function () {
   const loadingScreen = document.getElementById("loading");
-  
-  // Skip loading screen if navigating back using browser back button
-  if (performance.getEntriesByType("navigation")[0].type === "back_forward") {
+
+  setTimeout(() => {
+    loadingScreen.style.opacity = "0";
+    loadingScreen.style.transition = "opacity 0.5s ease";
+    setTimeout(() => {
       loadingScreen.style.display = "none";
       document.body.style.overflow = "auto";
-      return;
-  }
-  
-  setTimeout(() => {
-      loadingScreen.style.opacity = "0";
-      loadingScreen.style.transition = "opacity 0.5s ease";
-      setTimeout(() => {
-          loadingScreen.style.display = "none";
-          document.body.style.overflow = "auto";
-      }, 500);
+    }, 500);
   }, 5000);
 };
 

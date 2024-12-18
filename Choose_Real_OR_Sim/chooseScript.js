@@ -16,19 +16,20 @@ function showLoadingAndNavigate(path) {
   // بعد ثانية واحدة
   setTimeout(() => {
     // الانتقال للصفحة الجديدة
-    loadingScreen.style.display = "none";
-    document.body.style.overflow = "auto";
     window.location.href = `${basePath}${path}`;
   }, 1000);
 }
 
-// إخفاء شاشة التحميل عند التحميل
 window.addEventListener("load", () => {
-  const loadingScreen = document.querySelector(".loading_screen");
-  if (loadingScreen) {
-    loadingScreen.style.display = "none";
-    document.body.style.overflow = "auto";
-  }
+  const loadingScreen = document.getElementById("loading");
+  setTimeout(() => {
+    loadingScreen.style.opacity = "0";
+    loadingScreen.style.transition = "opacity 0.5s ease";
+    setTimeout(() => {
+      loadingScreen.style.display = "none";
+      document.body.style.overflow = "auto";
+    }, 500);
+  }, 5000);
 });
 
 real_mode_btn.addEventListener("click", () => {
