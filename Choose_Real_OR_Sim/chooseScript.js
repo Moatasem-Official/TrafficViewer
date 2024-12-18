@@ -2,12 +2,6 @@ const real_mode_btn = document.getElementById("real-mode");
 const sim_mode_btn = document.getElementById("sim-mode");
 
 function showLoadingAndNavigate(path) {
-  // إظهار شاشة التحميل
-  const loadingScreen = document.querySelector(".loading_screen");
-  loadingScreen.style.display = "flex";
-  loadingScreen.style.opacity = "1";
-  document.body.style.overflow = "hidden";
-
   // الحصول على المسار الأساسي للموقع
   const basePath = window.location.pathname.includes("/TrafficViewer")
     ? "/TrafficViewer"
