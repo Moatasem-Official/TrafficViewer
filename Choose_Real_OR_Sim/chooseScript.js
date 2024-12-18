@@ -21,6 +21,7 @@ window.addEventListener("load", () => {
     loadingScreen.style.transition = "opacity 0.5s ease";
     setTimeout(() => {
       loadingScreen.style.display = "none";
+      loadingScreen.style.zIndex = "0";
       document.body.style.overflow = "auto";
     }, 500);
   }, 5000);
