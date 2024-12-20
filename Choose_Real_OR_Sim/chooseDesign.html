@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choose Traffic Mode</title>
+    <link rel="stylesheet" href="./chooseStyle.css" />
+    <link rel="stylesheet" href="../assets/css/back-button.css" />
+    <link
+      rel="shortcut icon"
+      type="x-icon"
+      sizes="16x16 32x32 64x64"
+      href="../assets/images/icon_browser_image-removebg-preview.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&family=Beiruti:wght@200..900&family=Cairo:wght@200..1000&family=Changa:wght@200..800&family=Donegal+One&family=El+Messiri:wght@400..700&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Freeman&family=Goblin+One&family=Metal+Mania&family=Readex+Pro:wght@160..700&family=Rubik:ital,wght@0,300..900;1,300..900&family=Suez+One&family=Tajawal:wght@200;300;400;500;700;800;900&family=Zain:wght@200;300;400;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      /* أنماط عامة */
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        direction: rtl;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+      }
+
+      /* أنماط الحاوية */
+      .container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        flex-direction: column;
+      }
+
+      .svg-container {
+        width: 100%;
+        height: 100%;
+        max-width: 1200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+        max-height: 80vh;
+        transform: scale(0.7);
+      }
+
+      .slider-control label {
+        font-size: 14px;
+        color: #2c3e50;
+      }
+
+      .slider-control input {
+        width: 100%;
+      }
+
+      /* تحسينات للأجهزة المحمولة */
+      @media (max-width: 768px) {
+        .container {
+          align-items: center;
+        }
+
+        .svg-container {
+          height: auto;
+        }
+
+        svg {
+          max-height: none;
+          height: auto;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding-top: 0;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="./chooseScript.css" />
+  </head>
+  <body>
+    <div class="loading_screen" id="loading">
+      <div class="loading">
+        <div class="red_sign"></div>
+        <div class="yellow_sign"></div>
+        <div class="green_sign"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="svg-container">
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 1200 800"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <defs>
+            <!-- سيارة متجهة للشمال/الجنوب -->
+            <symbol id="car-vertical">
+              <rect x="0" y="0" width="40" height="60" fill="currentColor" />
+              <rect x="5" y="5" width="30" height="15" fill="#333" />
+              <rect x="5" y="40" width="30" height="15" fill="#333" />
+              <rect x="2" y="20" width="36" height="20" fill="#666" />
+              <circle cx="10" cy="50" r="3" fill="#111" />
+              <circle cx="30" cy="50" r="3" fill="#111" />
+              <circle cx="10" cy="10" r="3" fill="#111" />
+              <circle cx="30" cy="10" r="3" fill="#111" />
+            </symbol>
+            <!-- سيارة متجهة للشرق/الغرب -->
+            <symbol id="car-horizontal">
+              <rect x="0" y="0" width="60" height="40" fill="currentColor" />
+              <rect x="5" y="5" width="15" height="30" fill="#333" />
+              <rect x="40" y="5" width="15" height="30" fill="#333" />
+              <rect x="20" y="2" width="20" height="36" fill="#666" />
+              <circle cx="10" cy="10" r="3" fill="#111" />
+              <circle cx="10" cy="30" r="3" fill="#111" />
+              <circle cx="50" cy="10" r="3" fill="#111" />
+              <circle cx="50" cy="30" r="3" fill="#111" />
+            </symbol>
+          </defs>
+          <!-- الطريق الأفقي -->
+          <g id="horizontal-road">
+            <!-- القسم الأيسر -->
+            <rect
+              id="horizontal-road-left"
+              x="200"
+              y="300"
+              width="280"
+              height="200"
+              fill="#2c3e50"
+              stroke="#666"
+              stroke-width="2"
+            />
+
+            <!-- منطقة التقاطع -->
+            <rect
+              id="intersection"
+              x="480"
+              y="300"
+              width="240"
+              height="200"
+              fill="#2c3e50"
+              stroke="#666"
+              stroke-width="2"
+            />
+
+            <!-- القسم الأيمن -->
+            <rect
+              id="horizontal-road-right"
+              x="720"
+              y="300"
+              width="280"
+              height="200"
+              fill="#2c3e50"
+              stroke="#666"
+              stroke-width="2"
+            />
+          </g>
+
+          <!-- الطريق الرأسي -->
+          <g id="vertical-road">
+            <!-- القسم العلوي -->
+            <rect
+              id="vertical-road-top"
+              x="480"
+              y="0"
+              width="240"
+              height="300"
+              fill="#2c3e50"
+              stroke="#666"
+              stroke-width="2"
+            />
+
+            <!-- القسم السفلي -->
+            <rect
+              id="vertical-road-bottom"
+              x="480"
+              y="500"
+              width="240"
+              height="300"
+              fill="#2c3e50"
+              stroke="#666"
+              stroke-width="2"
+            />
+          </g>
+
+          <!-- خطوط الطريق -->
+          <line
+            x1="200"
+            y1="400"
+            x2="1000"
+            y2="400"
+            stroke="white"
+            stroke-width="4"
+            stroke-dasharray="40,40"
+          />
+          <line
+            x1="600"
+            y1="100"
+            x2="600"
+            y2="700"
+            stroke="white"
+            stroke-width="4"
+            stroke-dasharray="40,40"
+          />
+
+          <!-- إشارات المرور -->
+          <g id="traffic-lights">
+            <!-- إشارة المرور الشمالية -->
+            <g id="north-light" transform="translate(600, 120)">
+              <rect
+                x="-25"
+                y="-10"
+                width="50"
+                height="120"
+                fill="#333"
+                rx="10"
+              />
+              <rect x="-20" y="-5" width="40" height="110" fill="#222" rx="8" />
+              <circle id="north-red" cx="0" cy="15" r="12" fill="red" />
+              <circle id="north-yellow" cx="0" cy="50" r="12" fill="#333" />
+              <circle id="north-green" cx="0" cy="85" r="12" fill="#333" />
+            </g>
+
+            <!-- إشارة المرور الجنوبية -->
+            <g id="south-light" transform="translate(600, 580)">
+              <rect
+                x="-25"
+                y="-10"
+                width="50"
+                height="120"
+                fill="#333"
+                rx="10"
+              />
+              <rect x="-20" y="-5" width="40" height="110" fill="#222" rx="8" />
+              <circle id="south-red" cx="0" cy="15" r="12" fill="red" />
+              <circle id="south-yellow" cx="0" cy="50" r="12" fill="#333" />
+              <circle id="south-green" cx="0" cy="85" r="12" fill="#333" />
+            </g>
+
+            <!-- إشارة المرور الشرقية -->
+            <g id="east-light" transform="translate(780, 400)">
+              <rect
+                x="-10"
+                y="-25"
+                width="120"
+                height="50"
+                fill="#333"
+                rx="10"
+              />
+              <rect x="-5" y="-20" width="110" height="40" fill="#222" rx="8" />
+              <circle id="east-red" cx="15" cy="0" r="12" fill="red" />
+              <circle id="east-yellow" cx="50" cy="0" r="12" fill="#333" />
+              <circle id="east-green" cx="85" cy="0" r="12" fill="#333" />
+            </g>
+
+            <!-- إشارة المرور الغربية -->
+            <g id="west-light" transform="translate(420, 400)">
+              <rect
+                x="-110"
+                y="-25"
+                width="120"
+                height="50"
+                fill="#333"
+                rx="10"
+              />
+              <rect
+                x="-105"
+                y="-20"
+                width="110"
+                height="40"
+                fill="#222"
+                rx="8"
+              />
+              <circle id="west-red" cx="-85" cy="0" r="12" fill="red" />
+              <circle id="west-yellow" cx="-50" cy="0" r="12" fill="#333" />
+              <circle id="west-green" cx="-15" cy="0" r="12" fill="#333" />
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="choose_mode">
+        <button id="real-mode">
+          <i class="fa-solid fa-car-side"></i> Real Mode
+        </button>
+        <button id="sim-mode">
+          <i class="fa-solid fa-play"></i>Simulation Mode
+        </button>
+      </div>
+    </div>
+    <script src="./chooseScript.js"></script>
+  </body>
+</html>
